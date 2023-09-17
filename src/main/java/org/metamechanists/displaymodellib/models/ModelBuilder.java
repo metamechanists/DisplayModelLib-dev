@@ -1,6 +1,7 @@
 package org.metamechanists.displaymodellib.models;
 
 import dev.sefiraat.sefilib.entity.display.DisplayGroup;
+import lombok.Getter;
 import org.bukkit.Location;
 import org.jetbrains.annotations.NotNull;
 import org.metamechanists.displaymodellib.models.components.ModelComponent;
@@ -13,6 +14,7 @@ import java.util.Map;
  * Builder class that allows you to construct a model using components
  */
 public class ModelBuilder {
+    @Getter
     private final Map<String, ModelComponent> components = new HashMap<>();
 
     public ModelBuilder add(@NotNull final String name, @NotNull final ModelComponent component) {
