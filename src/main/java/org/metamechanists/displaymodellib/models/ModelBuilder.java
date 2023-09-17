@@ -44,4 +44,15 @@ public class ModelBuilder {
         components.forEach((name, component) -> group.addDisplay(name, component.build(blockLocation.clone().add(0.5, 0.5, 0.5))));
         return group;
     }
+    /**
+     * Creates all the components and adds them to the given displaygroup
+     * The components are build with all coordinates relative to 'group#getLocation'
+     * @param group The display group to build with
+     * @return The display group now containing the additional components
+     */
+    public DisplayGroup buildAtDisplayGroup(@NotNull final DisplayGroup group) {
+        final Location center = group.getLocation();
+        components.forEach((name, component) -> group.addDisplay(name, component.build(center.clone())));
+        return group;
+    }
 }
