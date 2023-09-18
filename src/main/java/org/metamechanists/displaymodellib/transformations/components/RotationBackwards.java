@@ -18,6 +18,6 @@ public class RotationBackwards implements TransformationMatrixComponent {
 
     @Override
     public void apply(@NotNull final Matrix4f matrix) {
-        matrix.mul(new Matrix4f().rotateZYX(new Vector3f((float) -rotation.z, (float) -rotation.y, (float) -rotation.x)));
+        matrix.mul(new Matrix4f().rotateZYX(new Vector3f((float) -rotation.x, (float) -rotation.y, (float) -rotation.z)));
     }
 }
