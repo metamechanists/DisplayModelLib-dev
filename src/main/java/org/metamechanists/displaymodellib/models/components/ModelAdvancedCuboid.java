@@ -59,6 +59,17 @@ public class ModelAdvancedCuboid implements ModelComponent {
         return rotate(new Vector3d(0, rotationY, 0));
     }
 
+    public ModelAdvancedCuboid rotateBackwards(@NotNull final Vector3d rotation) {
+        matrixBuilder.rotateBackwards(rotation);
+        return this;
+    }
+    public ModelAdvancedCuboid rotateBackwards(final double x, final double y, final double z) {
+        return rotateBackwards(new Vector3d(x, y, z));
+    }
+    public ModelAdvancedCuboid rotateBackwards(final double rotationY) {
+        return rotateBackwards(new Vector3d(0, rotationY, 0));
+    }
+
     public ModelAdvancedCuboid material(@NotNull final Material material) {
         main.material(material);
         return this;

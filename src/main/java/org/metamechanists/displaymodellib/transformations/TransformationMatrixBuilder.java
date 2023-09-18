@@ -8,6 +8,7 @@ import org.joml.Vector3d;
 import org.joml.Vector3f;
 import org.metamechanists.displaymodellib.transformations.components.LookAlong;
 import org.metamechanists.displaymodellib.transformations.components.Rotation;
+import org.metamechanists.displaymodellib.transformations.components.RotationBackwards;
 import org.metamechanists.displaymodellib.transformations.components.Scale;
 import org.metamechanists.displaymodellib.transformations.components.TransformationMatrixComponent;
 import org.metamechanists.displaymodellib.transformations.components.Translation;
@@ -68,6 +69,22 @@ public class TransformationMatrixBuilder {
      */
     public TransformationMatrixBuilder rotate(final double x, final double y, final double z) {
         rotate(new Vector3d(x, y, z));
+        return this;
+    }
+
+    /**
+     * Represents a rotation in X, Y, and Z (angles in radians)
+     * The rotation takes a Vector3d instead of a Vector3f because most rotations are in terms of Math.PI, which is a double
+     */
+    public TransformationMatrixBuilder rotateBackwards(final @NotNull Vector3d rotation) {
+        components.addLast(new RotationBackwards(rotation));
+        return this;
+    }
+    /**
+     * Represents a rotation in X, Y, and Z (angles in radians)
+     */
+    public TransformationMatrixBuilder rotateBackwards(final double x, final double y, final double z) {
+        rotateBackwards(new Vector3d(x, y, z));
         return this;
     }
 
