@@ -59,6 +59,17 @@ public class ModelAdvancedText implements ModelComponent {
         return rotate(new Vector3d(0, rotationY, 0));
     }
 
+    public ModelAdvancedText rotateBackwards(@NotNull final Vector3d rotation) {
+        matrixBuilder.rotateBackwards(rotation);
+        return this;
+    }
+    public ModelAdvancedText rotateBackwards(final double x, final double y, final double z) {
+        return rotateBackwards(new Vector3d(x, y, z));
+    }
+    public ModelAdvancedText rotateBackwards(final double rotationY) {
+        return rotateBackwards(new Vector3d(0, rotationY, 0));
+    }
+
     /**
      * @param color The background of the text (default is transparent)
      */
