@@ -7,6 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.entity.TextDisplay;
+import org.bukkit.entity.TextDisplay.TextAlignment;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 import org.joml.Vector3d;
@@ -83,6 +84,10 @@ public class ModelAdvancedText implements ModelComponent {
     }
     public ModelAdvancedText text(@NotNull final Component text) {
         main.text(text);
+        return this;
+    }
+    public ModelAdvancedText alignment(@NotNull final TextAlignment alignment) {
+        main.alignment(alignment);
         return this;
     }
     public ModelAdvancedText brightness(final int blockBrightness) {
