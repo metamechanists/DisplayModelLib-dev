@@ -116,6 +116,7 @@ public class ModelCuboid implements ModelComponent {
         return this;
     }
 
+    @Override
     public Matrix4f getMatrix() {
         return new TransformationMatrixBuilder()
                 .lookAlong(facing)

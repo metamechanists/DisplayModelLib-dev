@@ -114,6 +114,7 @@ public class ModelItem implements ModelComponent {
         return this;
     }
 
+    @Override
     public Matrix4f getMatrix() {
         // 1.20 added 180 degrees to item display rotation, let's account for this
         Vector3d adjustedRotation = rotation;

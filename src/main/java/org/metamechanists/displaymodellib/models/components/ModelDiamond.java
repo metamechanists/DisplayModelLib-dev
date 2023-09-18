@@ -91,6 +91,7 @@ public class ModelDiamond implements ModelComponent {
         return this;
     }
 
+    @Override
     public Matrix4f getMatrix() {
         return new TransformationMatrixBuilder()
                 .lookAlong(facing)

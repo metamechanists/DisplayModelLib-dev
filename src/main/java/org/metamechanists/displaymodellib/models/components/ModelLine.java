@@ -95,6 +95,7 @@ public class ModelLine implements ModelComponent {
         return this;
     }
 
+    @Override
     public Matrix4f getMatrix() {
         final Vector3f midpoint = TransformationUtils.getMidpoint(from, to);
         return new TransformationMatrixBuilder()

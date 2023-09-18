@@ -4,12 +4,14 @@ import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Display;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Matrix4f;
 
 
 /**
  * Represents a single component of a model, composed of one or multiple Displays.
  */
 public interface ModelComponent {
+    Matrix4f getMatrix();
     Display build(@NotNull final Location origin);
     Display build(@NotNull final Block block);
 }

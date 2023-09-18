@@ -1,6 +1,7 @@
 package org.metamechanists.displaymodellib.models.components;
 
 import lombok.Getter;
+import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
@@ -94,6 +95,10 @@ public class ModelText implements ModelComponent {
         main.text(text);
         return this;
     }
+    public ModelText text(@NotNull final Component text) {
+        main.text(text);
+        return this;
+    }
     public ModelText brightness(final int blockBrightness) {
         main.brightness(blockBrightness);
         return this;
@@ -103,6 +108,7 @@ public class ModelText implements ModelComponent {
         return this;
     }
 
+    @Override
     public Matrix4f getMatrix() {
         return new TransformationMatrixBuilder()
                 .lookAlong(facing)
