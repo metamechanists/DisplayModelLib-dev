@@ -13,6 +13,6 @@ public class Translation implements TransformationMatrixComponent {
 
     @Override
     public void apply(@NotNull final Matrix4f matrix) {
-        matrix.translate(translation);
+        matrix.mul(new Matrix4f().translate(translation));
     }
 }

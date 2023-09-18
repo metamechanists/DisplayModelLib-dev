@@ -13,6 +13,6 @@ public class Scale implements TransformationMatrixComponent {
 
     @Override
     public void apply(@NotNull final Matrix4f matrix) {
-        matrix.scale(scale);
+        matrix.mul(new Matrix4f().scale(scale));
     }
 }

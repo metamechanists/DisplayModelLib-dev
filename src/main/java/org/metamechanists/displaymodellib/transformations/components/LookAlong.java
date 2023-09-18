@@ -33,6 +33,6 @@ public class LookAlong implements TransformationMatrixComponent {
 
     @Override
     public void apply(@NotNull final Matrix4f matrix) {
-        matrix.rotateY(getAngleY()).rotateX(getAngleX());
+        matrix.mul(new Matrix4f().rotateY(getAngleY()).rotateX(getAngleX()));
     }
 }
