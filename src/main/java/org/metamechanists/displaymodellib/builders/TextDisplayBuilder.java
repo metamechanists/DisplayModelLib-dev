@@ -9,7 +9,7 @@ import org.bukkit.entity.TextDisplay.TextAlignment;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class TextDisplayBuilder implements DisplayBuilder {
     private String text;
     private Matrix4f transformation;

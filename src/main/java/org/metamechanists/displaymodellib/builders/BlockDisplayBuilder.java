@@ -9,7 +9,7 @@ import org.bukkit.entity.Display.Brightness;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class BlockDisplayBuilder implements DisplayBuilder {
     private Material material;
     private BlockData blockData;

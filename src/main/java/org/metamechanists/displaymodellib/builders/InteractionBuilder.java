@@ -5,6 +5,7 @@ import org.bukkit.entity.Interaction;
 import org.jetbrains.annotations.NotNull;
 
 
+@SuppressWarnings("unused")
 public class InteractionBuilder {
     private Float width;
     private Float height;

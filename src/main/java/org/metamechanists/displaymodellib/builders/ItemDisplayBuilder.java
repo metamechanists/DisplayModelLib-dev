@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "UnusedReturnValue"})
 public class ItemDisplayBuilder implements DisplayBuilder {
     private Material material;
     private ItemStack itemStack;
