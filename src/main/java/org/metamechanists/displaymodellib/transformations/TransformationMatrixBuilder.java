@@ -148,7 +148,6 @@ public class TransformationMatrixBuilder {
      * @return The matrix representing the transformation formed by all the components, plus an adjustment for the text display
      */
     public @NotNull Matrix4f buildForTextDisplay() {
-        components.addFirst(new Translation(TEXT_DISPLAY_ADJUSTMENT));
         return build();
     }
 }
