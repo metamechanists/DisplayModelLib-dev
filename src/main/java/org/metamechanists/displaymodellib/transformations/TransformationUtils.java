@@ -9,6 +9,7 @@ import org.joml.Vector3f;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings({"unused", "WeakerAccess"})
 @UtilityClass
 public class TransformationUtils {
     private final List<BlockFace> AXIS = new ArrayList<>(List.of(
