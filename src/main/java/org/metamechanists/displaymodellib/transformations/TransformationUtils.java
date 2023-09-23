@@ -3,7 +3,9 @@ package org.metamechanists.displaymodellib.transformations;
 import lombok.experimental.UtilityClass;
 import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
+import org.bukkit.util.Transformation;
 import org.jetbrains.annotations.NotNull;
+import org.joml.Matrix4f;
 import org.joml.Vector3f;
 
 import java.util.ArrayList;
@@ -66,5 +68,12 @@ public class TransformationUtils {
     }
     public @NotNull Vector3f getMidpoint(@NotNull final Vector3f from, @NotNull final Vector3f to) {
         return new Vector3f(from).add(to).mul(0.5F);
+    }
+    public Matrix4f transformationToMatrix(@NotNull final Transformation transformation) {
+        return new Matrix4f()
+                .translation(transformation.getTranslation())
+                .rotate(transformation.getLeftRotation())
+                .scale(transformation.getScale())
+                .rotate(transformation.getRightRotation());
     }
 }
