@@ -6,6 +6,8 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Display;
+import org.bukkit.entity.Display.Billboard;
 import org.bukkit.entity.TextDisplay;
 import org.bukkit.entity.TextDisplay.TextAlignment;
 import org.jetbrains.annotations.NotNull;
@@ -61,7 +63,7 @@ public class ModelText implements ModelComponent {
      * @param size The size of the text
      */
     public ModelText size(final float size) {
-        this.size = new Vector3f(size);
+        this.size = new Vector3f(size, size, 0.01F);
         return this;
     }
 
@@ -110,6 +112,10 @@ public class ModelText implements ModelComponent {
     }
     public ModelText glow(@NotNull final Color color) {
         main.glow(color);
+        return this;
+    }
+    public ModelText billboard(@NotNull final Billboard billboard) {
+        main.billboard(billboard);
         return this;
     }
 

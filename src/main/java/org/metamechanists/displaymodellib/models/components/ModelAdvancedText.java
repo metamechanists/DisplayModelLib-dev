@@ -6,6 +6,8 @@ import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
+import org.bukkit.entity.Display;
+import org.bukkit.entity.Display.Billboard;
 import org.bukkit.entity.TextDisplay;
 import org.bukkit.entity.TextDisplay.TextAlignment;
 import org.jetbrains.annotations.NotNull;
@@ -38,15 +40,9 @@ public class ModelAdvancedText implements ModelComponent {
         return facing(face.getDirection().toVector3f());
     }
 
-    public ModelAdvancedText scale(@NotNull final Vector3f size) {
-        matrixBuilder.scale(size);
-        return this;
-    }
-    public ModelAdvancedText scale(final float x, final float y, final float z) {
-        return scale(new Vector3f(x, y, z));
-    }
     public ModelAdvancedText scale(final float size) {
-        return scale(new Vector3f(size));
+        matrixBuilder.scale(new Vector3f(size, size, 0.01F));
+        return this;
     }
 
     public ModelAdvancedText rotate(@NotNull final Vector3d rotation) {
@@ -96,6 +92,10 @@ public class ModelAdvancedText implements ModelComponent {
     }
     public ModelAdvancedText glow(@NotNull final Color color) {
         main.glow(color);
+        return this;
+    }
+    public ModelAdvancedText billboard(@NotNull final Billboard billboard) {
+        main.billboard(billboard);
         return this;
     }
 
