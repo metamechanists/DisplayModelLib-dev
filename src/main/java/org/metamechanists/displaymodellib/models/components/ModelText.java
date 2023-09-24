@@ -39,7 +39,7 @@ public class ModelText implements ModelComponent {
      * This depends on the rotation of the component
      * For example, if you rotate by 90 degrees before translating, the translation will also be rotated by 90 degrees
      */
-    public ModelComponent translate(@NotNull final Vector3f translation) {
+    public ModelText translate(@NotNull final Vector3f translation) {
         matrixBuilder.translate(translation);
         return this;
     }
@@ -48,7 +48,7 @@ public class ModelText implements ModelComponent {
      * This depends on the rotation of the component
      * For example, if you rotate by 90 degrees before translating, the translation will also be rotated by 90 degrees
      */
-    public ModelComponent translate(final float x, final float y, final float z) {
+    public ModelText translate(final float x, final float y, final float z) {
         return translate(new Vector3f(x, y, z));
     }
 
@@ -57,7 +57,7 @@ public class ModelText implements ModelComponent {
      * This depends on the rotation of the component
      * For example, if you rotate by 90 degrees before translating, the translation will also be rotated by 90 degrees
      */
-    public ModelComponent translate(@NotNull final Vector3d translation) {
+    public ModelText translate(@NotNull final Vector3d translation) {
         matrixBuilder.translate(TransformationUtils.dropPrecision(translation));
         return this;
     }
@@ -66,7 +66,7 @@ public class ModelText implements ModelComponent {
      * This depends on the rotation of the component
      * For example, if you rotate by 90 degrees before translating, the translation will also be rotated by 90 degrees
      */
-    public ModelComponent translate(final double x, final double y, final double z) {
+    public ModelText translate(final double x, final double y, final double z) {
         return translate(new Vector3d(x, y, z));
     }
 
@@ -75,7 +75,7 @@ public class ModelText implements ModelComponent {
      * This is not the same as .facing(...), because this affects the transformation, while .facing(...) affects where the text is rendered after the transformations are applied
      * This is useful eg to align a component with the direction a player is looking
      */
-    public ModelComponent lookAlong(final @NotNull Vector3f facing) {
+    public ModelText lookAlong(final @NotNull Vector3f facing) {
         matrixBuilder.lookAlong(facing);
         return this;
     }
@@ -84,7 +84,7 @@ public class ModelText implements ModelComponent {
      * This is not the same as .facing(...), because this affects the transformation, while .facing(...) affects where the text is rendered after the transformations are applied
      * This is useful eg to align a component with the direction a player is looking
      */
-    public ModelComponent lookAlong(final @NotNull Vector3d facing) {
+    public ModelText lookAlong(final @NotNull Vector3d facing) {
         matrixBuilder.lookAlong(new Vector3f((float) facing.x, (float) facing.y, (float) facing.z));
         return this;
     }
@@ -93,111 +93,111 @@ public class ModelText implements ModelComponent {
      * This is not the same as .facing(...), because this affects the transformation, while .facing(...) affects where the text is rendered after the transformations are applied
      * This is useful eg to align a component with the direction a player is looking
      */
-    public ModelComponent lookAlong(final @NotNull BlockFace face) {
+    public ModelText lookAlong(final @NotNull BlockFace face) {
         return lookAlong(face.getDirection().toVector3f());
     }
 
     /**
      * Scales the component on each axis
      */
-    public ModelComponent scale(@NotNull final Vector3f size) {
+    public ModelText scale(@NotNull final Vector3f size) {
         matrixBuilder.scale(size);
         return this;
     }
     /**
      * Scales the component on each axis
      */
-    public ModelComponent scale(final float x, final float y, final float z) {
+    public ModelText scale(final float x, final float y, final float z) {
         return scale(new Vector3f(x, y, z));
     }
     /**
      * Scales the component on all axes
      */
-    public ModelComponent scale(final float size) {
+    public ModelText scale(final float size) {
         return scale(new Vector3f(size));
     }
 
     /**
      * Scales the component on each axis
      */
-    public ModelComponent scale(@NotNull final Vector3d size) {
+    public ModelText scale(@NotNull final Vector3d size) {
         matrixBuilder.scale(TransformationUtils.dropPrecision(size));
         return this;
     }
     /**
      * Scales the component on each axis
      */
-    public ModelComponent scale(final double x, final double y, final double z) {
+    public ModelText scale(final double x, final double y, final double z) {
         return scale(new Vector3d(x, y, z));
     }
     /**
      * Scales the component on all axes
      */
-    public ModelComponent scale(final double size) {
+    public ModelText scale(final double size) {
         return scale(new Vector3d(size));
     }
 
     /**
      * Rotates the component by euler angles in radians
      */
-    public ModelComponent rotate(@NotNull final Vector3d rotation) {
+    public ModelText rotate(@NotNull final Vector3d rotation) {
         matrixBuilder.rotate(rotation);
         return this;
     }
     /**
      * Rotates the component by euler angles in radians
      */
-    public ModelComponent rotate(final double x, final double y, final double z) {
+    public ModelText rotate(final double x, final double y, final double z) {
         return rotate(new Vector3d(x, y, z));
     }
     /**
      * Rotates the component by euler angles in radians around the X axis
      */
-    public ModelComponent rotateX(final double rotation) {
+    public ModelText rotateX(final double rotation) {
         return rotate(new Vector3d(rotation, 0, 0));
     }
     /**
      * Rotates the component by euler angles in radians around the Y axis
      */
-    public ModelComponent rotateY(final double rotation) {
+    public ModelText rotateY(final double rotation) {
         return rotate(new Vector3d(0, rotation, 0));
     }
     /**
      * Rotates the component by euler angles in radians around the Z axis
      */
-    public ModelComponent rotateZ(final double rotation) {
+    public ModelText rotateZ(final double rotation) {
         return rotate(new Vector3d(0, 0, rotation));
     }
 
     /**
      * Rotates the component by euler angles in radians
      */
-    public ModelComponent rotate(@NotNull final Vector3f rotation) {
+    public ModelText rotate(@NotNull final Vector3f rotation) {
         matrixBuilder.rotate(new Vector3d(rotation));
         return this;
     }
     /**
      * Rotates the component by euler angles in radians
      */
-    public ModelComponent rotate(final float x, final float y, final float z) {
+    public ModelText rotate(final float x, final float y, final float z) {
         return rotate(new Vector3f(x, y, z));
     }
     /**
      * Rotates the component by euler angles in radians around the X axis
      */
-    public ModelComponent rotateX(final float rotation) {
+    public ModelText rotateX(final float rotation) {
         return rotate(new Vector3f(rotation, 0, 0));
     }
     /**
      * Rotates the component by euler angles in radians around the Y axis
      */
-    public ModelComponent rotateY(final float rotation) {
+    public ModelText rotateY(final float rotation) {
         return rotate(new Vector3f(0, rotation, 0));
     }
     /**
      * Rotates the component by euler angles in radians around the Z axis
      */
-    public ModelComponent rotateZ(final float rotation) {
+    public ModelText rotateZ(final float rotation) {
         return rotate(new Vector3f(0, 0, rotation));
     }
 
@@ -205,7 +205,7 @@ public class ModelText implements ModelComponent {
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotate(@NotNull final Vector3d rotation) {
+    public ModelText undoRotate(@NotNull final Vector3d rotation) {
         matrixBuilder.rotateBackwards(rotation);
         return this;
     }
@@ -213,28 +213,28 @@ public class ModelText implements ModelComponent {
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotate(final double x, final double y, final double z) {
+    public ModelText undoRotate(final double x, final double y, final double z) {
         return undoRotate(new Vector3d(x, y, z));
     }
     /**
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotateX(final double rotation) {
+    public ModelText undoRotateX(final double rotation) {
         return undoRotate(new Vector3d(rotation, 0, 0));
     }
     /**
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotateY(final double rotation) {
+    public ModelText undoRotateY(final double rotation) {
         return undoRotate(new Vector3d(0, rotation, 0));
     }
     /**
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotateZ(final double rotation) {
+    public ModelText undoRotateZ(final double rotation) {
         return undoRotate(new Vector3d(0, 0, rotation));
     }
 
@@ -242,14 +242,14 @@ public class ModelText implements ModelComponent {
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotate(final float x, final float y, final float z) {
+    public ModelText undoRotate(final float x, final float y, final float z) {
         return undoRotate(new Vector3d(x, y, z));
     }
     /**
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotate(@NotNull final Vector3f rotation) {
+    public ModelText undoRotate(@NotNull final Vector3f rotation) {
         matrixBuilder.rotateBackwards(new Vector3d(rotation));
         return this;
     }
@@ -257,21 +257,21 @@ public class ModelText implements ModelComponent {
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotateX(final float rotation) {
+    public ModelText undoRotateX(final float rotation) {
         return undoRotate(new Vector3f(rotation, 0, 0));
     }
     /**
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotateY(final float rotation) {
+    public ModelText undoRotateY(final float rotation) {
         return undoRotate(new Vector3f(0, rotation, 0));
     }
     /**
      * Undoes a previous rotation
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
-    public ModelComponent undoRotateZ(final float rotation) {
+    public ModelText undoRotateZ(final float rotation) {
         return undoRotate(new Vector3f(0, 0, rotation));
     }
 
