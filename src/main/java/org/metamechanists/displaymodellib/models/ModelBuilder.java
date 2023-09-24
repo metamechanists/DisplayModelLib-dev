@@ -16,7 +16,15 @@ import java.util.Map;
 @Getter
 @SuppressWarnings("unused")
 public class ModelBuilder {
-    private final Map<String, ModelComponent> components = new HashMap<>();
+    private final Map<String, ModelComponent> components;
+
+    public ModelBuilder() {
+         this.components = new HashMap<>();
+    }
+
+    public ModelBuilder(@NotNull final ModelBuilder other) {
+        this.components = other.components;
+    }
 
     public ModelBuilder add(@NotNull final String name, @NotNull final ModelComponent component) {
         components.put(name, component);
