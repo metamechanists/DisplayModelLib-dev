@@ -24,6 +24,20 @@ public class TextDisplayBuilder implements DisplayBuilder {
     private TextAlignment alignment;
     private Color backgroundColor;
 
+    public TextDisplayBuilder() {}
+
+    public TextDisplayBuilder(@NotNull final TextDisplayBuilder other) {
+        this.textString = other.textString;
+        this.textComponent = other.textComponent;
+        this.transformation = other.transformation;
+        this.brightness = other.brightness;
+        this.glowColor = other.glowColor;
+        this.viewRange = other.viewRange;
+        this.billboard = other.billboard;
+        this.alignment = other.alignment;
+        this.backgroundColor = other.backgroundColor;
+    }
+
     @Override
     public TextDisplay build(@NotNull final Location location) {
         return location.getWorld().spawn(location, TextDisplay.class, display -> {

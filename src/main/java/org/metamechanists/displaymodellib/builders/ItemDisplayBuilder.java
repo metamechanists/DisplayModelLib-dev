@@ -21,6 +21,18 @@ public class ItemDisplayBuilder implements DisplayBuilder {
     private Billboard billboard;
     private Float viewRange;
 
+    public ItemDisplayBuilder() {}
+
+    public ItemDisplayBuilder(@NotNull final ItemDisplayBuilder other) {
+        this.material = other.material;
+        this.itemStack = other.itemStack;
+        this.transformation = other.transformation;
+        this.brightness = other.brightness;
+        this.glowColor = other.glowColor;
+        this.billboard = other.billboard;
+        this.viewRange = other.viewRange;
+    }
+
     @Override
     public ItemDisplay build(@NotNull final Location location) {
         return location.getWorld().spawn(location, ItemDisplay.class, display -> {

@@ -19,6 +19,17 @@ public class BlockDisplayBuilder implements DisplayBuilder {
     private Integer brightness;
     private Float viewRange;
 
+    public BlockDisplayBuilder() {}
+
+    public BlockDisplayBuilder(@NotNull final BlockDisplayBuilder other) {
+        this.material = other.material;
+        this.blockData = other.blockData;
+        this.transformation = other.transformation;
+        this.glowColor = other.glowColor;
+        this.brightness = other.brightness;
+        this.viewRange = other.viewRange;
+    }
+
     @Override
     public BlockDisplay build(@NotNull final Location location) {
         return location.getWorld().spawn(location, BlockDisplay.class, display -> {

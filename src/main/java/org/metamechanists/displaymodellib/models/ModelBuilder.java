@@ -23,7 +23,7 @@ public class ModelBuilder {
     }
 
     public ModelBuilder(@NotNull final ModelBuilder other) {
-        this.components = other.components;
+        this.components = new HashMap<>(other.components);
     }
 
     public ModelBuilder add(@NotNull final String name, @NotNull final ModelComponent component) {

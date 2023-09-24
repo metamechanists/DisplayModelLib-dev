@@ -38,10 +38,10 @@ public class ModelDiamond implements ModelComponent {
         this.size = new Vector3f();
     }
     public ModelDiamond(final @NotNull ModelDiamond other) {
-        this.main = other.main;
-        this.location = other.location;
-        this.facing = other.facing;
-        this.size = other.size;
+        this.main = new BlockDisplayBuilder(other.main);
+        this.location = new Vector3f(other.location);
+        this.facing = new Vector3f(other.facing);
+        this.size = new Vector3f(other.size);
     }
 
     /**

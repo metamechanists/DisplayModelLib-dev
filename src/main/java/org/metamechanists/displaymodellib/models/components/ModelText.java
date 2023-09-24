@@ -30,8 +30,8 @@ public class ModelText implements ModelComponent {
         this.matrixBuilder = new TransformationMatrixBuilder();
     }
     public ModelText(final @NotNull ModelText other) {
-        this.main = other.main;
-        this.matrixBuilder = other.matrixBuilder;
+        this.main = new TextDisplayBuilder(other.main);
+        this.matrixBuilder = new TransformationMatrixBuilder(other.matrixBuilder);
     }
 
     /**

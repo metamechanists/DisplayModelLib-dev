@@ -31,8 +31,8 @@ public class ModelItem implements ModelComponent {
         this.matrixBuilder = new TransformationMatrixBuilder();
     }
     public ModelItem(final @NotNull ModelItem other) {
-        this.main = other.main;
-        this.matrixBuilder = other.matrixBuilder;
+        this.main = new ItemDisplayBuilder(other.main);
+        this.matrixBuilder = new TransformationMatrixBuilder(other.matrixBuilder);
     }
 
     /**

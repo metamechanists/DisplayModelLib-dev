@@ -10,6 +10,13 @@ public class InteractionBuilder {
     private Float width;
     private Float height;
 
+    public InteractionBuilder() {}
+
+    public InteractionBuilder(@NotNull final InteractionBuilder other) {
+        this.width = other.width;
+        this.height = other.height;
+    }
+
     public Interaction build(@NotNull final Location location) {
         final Location finalLocation = location.clone();
 

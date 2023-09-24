@@ -24,8 +24,15 @@ import java.util.Deque;
 public class TransformationMatrixBuilder {
     private static final Vector3f BLOCK_DISPLAY_ADJUSTMENT = new Vector3f(-0.5F);
     private static final Vector3f TEXT_DISPLAY_ADJUSTMENT = new Vector3f(-0.5F, 0, -0.5F);
+    private final Deque<TransformationMatrixComponent> components;
 
-    private final Deque<TransformationMatrixComponent> components = new ArrayDeque<>();
+    public TransformationMatrixBuilder() {
+        this.components = new ArrayDeque<>();
+    }
+
+    public TransformationMatrixBuilder(@NotNull final TransformationMatrixBuilder other) {
+        this.components = new ArrayDeque<>(other.components);
+    }
 
     /**
      * Represents a translation in X, Y, and Z.

@@ -29,8 +29,8 @@ public class ModelCuboid implements ModelComponent {
          this.matrixBuilder = new TransformationMatrixBuilder();
     }
     public ModelCuboid(final @NotNull ModelCuboid other) {
-        this.main = other.main;
-        this.matrixBuilder = other.matrixBuilder;
+        this.main = new BlockDisplayBuilder(other.main);
+        this.matrixBuilder = new TransformationMatrixBuilder(other.matrixBuilder);
     }
 
     /**

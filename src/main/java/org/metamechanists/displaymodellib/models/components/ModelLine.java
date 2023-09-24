@@ -32,9 +32,9 @@ public class ModelLine implements ModelComponent {
         this.main = new BlockDisplayBuilder();
     }
     public ModelLine(final @NotNull ModelLine other) {
-        this.main = other.main;
-        this.from = other.from;
-        this.to = other.to;
+        this.main = new BlockDisplayBuilder(other.main);
+        this.from = new Vector3f(other.from);
+        this.to = new Vector3f(other.to);
         this.thickness = other.thickness;
         this.extraLength = other.extraLength;
         this.roll = other.roll;
