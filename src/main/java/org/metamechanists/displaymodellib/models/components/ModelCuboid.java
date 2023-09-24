@@ -8,92 +8,267 @@ import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.BlockDisplay;
+import org.bukkit.entity.Display;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 import org.joml.Vector3d;
 import org.joml.Vector3f;
 import org.metamechanists.displaymodellib.builders.BlockDisplayBuilder;
 import org.metamechanists.displaymodellib.transformations.TransformationMatrixBuilder;
+import org.metamechanists.displaymodellib.transformations.TransformationUtils;
 
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 @Getter
 public class ModelCuboid implements ModelComponent {
-    private final BlockDisplayBuilder main = new BlockDisplayBuilder();
+    private final BlockDisplayBuilder main;
+    private final TransformationMatrixBuilder matrixBuilder;
 
-    private Vector3f location = new Vector3f();
-    private Vector3f facing = new Vector3f(0, 0, 1);
-    private Vector3f size = new Vector3f();
-    private Vector3d rotation = new Vector3d();
+    public ModelCuboid() {
+         this.main = new BlockDisplayBuilder();
+         this.matrixBuilder = new TransformationMatrixBuilder();
+    }
+    public ModelCuboid(final @NotNull ModelCuboid other) {
+        this.main = other.main;
+        this.matrixBuilder = other.matrixBuilder;
+    }
 
     /**
-     * @param location The center of the cuboid
+     * Translates the cuboid by the given vector
+     * This depends on the rotation of the component
+     * For example, if you rotate by 90 degrees before translating, the translation will also be rotated by 90 degrees
      */
-    public ModelCuboid location(@NotNull final Vector3f location) {
-        this.location = location;
+    public ModelComponent translate(@NotNull final Vector3f translation) {
+        matrixBuilder.translate(translation);
         return this;
     }
     /**
-     * Sets the center of the cuboid
+     * Translates the cuboid by the given vector
+     * This depends on the rotation of the component
+     * For example, if you rotate by 90 degrees before translating, the translation will also be rotated by 90 degrees
      */
-    public ModelCuboid location(final float x, final float y, final float z) {
-        return location(new Vector3f(x, y, z));
+    public ModelComponent translate(final float x, final float y, final float z) {
+        return translate(new Vector3f(x, y, z));
     }
 
     /**
-     * Sets the starting orientation of the cuboid (default is south AKA positive Z)
-     * This is useful eg to align a model with the direction a player is looking
+     * Translates the cuboid by the given vector
+     * This depends on the rotation of the component
+     * For example, if you rotate by 90 degrees before translating, the translation will also be rotated by 90 degrees
      */
-    public ModelCuboid facing(final @NotNull Vector3f facing) {
-        this.facing = facing;
+    public ModelComponent translate(@NotNull final Vector3d translation) {
+        matrixBuilder.translate(TransformationUtils.dropPrecision(translation));
         return this;
     }
     /**
-     * Sets the starting orientation of the cuboid (default is south AKA positive Z)
-     * This is useful eg to align a model with the direction a player is looking
+     * Translates the cuboid by the given vector
+     * This depends on the rotation of the component
+     * For example, if you rotate by 90 degrees before translating, the translation will also be rotated by 90 degrees
      */
-    public ModelCuboid facing(final @NotNull BlockFace face) {
-        return facing(face.getDirection().toVector3f());
+    public ModelComponent translate(final double x, final double y, final double z) {
+        return translate(new Vector3d(x, y, z));
     }
 
     /**
-     * @param size The size of the cuboid (ie: the distance from one side to the other) on each axis
+     * Looks along the provided vector
+     * This is useful eg to align a component with the direction a player is looking
      */
-    public ModelCuboid size(@NotNull final Vector3f size) {
-        this.size = size;
+    public ModelComponent lookAlong(final @NotNull Vector3f facing) {
+        matrixBuilder.lookAlong(facing);
         return this;
     }
     /**
-     * Sets the size of the cuboid (ie: the distance from one side to the other) on each axis
+     * Looks along the provided vector
+     * This is useful eg to align a component with the direction a player is looking
      */
-    public ModelCuboid size(final float x, final float y, final float z) {
-        return size(new Vector3f(x, y, z));
+    public ModelComponent lookAlong(final @NotNull Vector3d facing) {
+        matrixBuilder.lookAlong(new Vector3f((float) facing.x, (float) facing.y, (float) facing.z));
+        return this;
     }
     /**
-     * @param size The size of the cuboid (ie: the distance from one side to the other) on all three axes - this forms a cube
+     * Looks along the provided face
+     * This is useful eg to align a component with the direction a player is looking
      */
-    public ModelCuboid size(final float size) {
-        return size(new Vector3f(size));
+    public ModelComponent lookAlong(final @NotNull BlockFace face) {
+        return lookAlong(face.getDirection().toVector3f());
     }
 
     /**
-     * @param rotation The rotation of the cuboid in radians
+     * Scales the component on each axis
      */
-    public ModelCuboid rotation(@NotNull final Vector3d rotation) {
-        this.rotation = rotation;
+    public ModelComponent scale(@NotNull final Vector3f size) {
+        matrixBuilder.scale(size);
         return this;
     }
     /**
-     * Sets the rotation of the cuboid in radians
+     * Scales the component on each axis
      */
-    public ModelCuboid rotation(final double x, final double y, final double z) {
-        return rotation(new Vector3d(x, y, z));
+    public ModelComponent scale(final float x, final float y, final float z) {
+        return scale(new Vector3f(x, y, z));
     }
     /**
-     * @param rotationY The rotation of the cuboid around the Y axis in radians
+     * Scales the component on all axes
      */
-    public ModelCuboid rotation(final double rotationY) {
-        return rotation(new Vector3d(0, rotationY, 0));
+    public ModelComponent scale(final float size) {
+        return scale(new Vector3f(size));
+    }
+
+    /**
+     * Scales the component on each axis
+     */
+    public ModelComponent scale(@NotNull final Vector3d size) {
+        matrixBuilder.scale(TransformationUtils.dropPrecision(size));
+        return this;
+    }
+    /**
+     * Scales the component on each axis
+     */
+    public ModelComponent scale(final double x, final double y, final double z) {
+        return scale(new Vector3d(x, y, z));
+    }
+    /**
+     * Scales the component on all axes
+     */
+    public ModelComponent scale(final double size) {
+        return scale(new Vector3d(size));
+    }
+
+    /**
+     * Rotates the component by euler angles in radians
+     */
+    public ModelComponent rotate(@NotNull final Vector3d rotation) {
+        matrixBuilder.rotate(rotation);
+        return this;
+    }
+    /**
+     * Rotates the component by euler angles in radians
+     */
+    public ModelComponent rotate(final double x, final double y, final double z) {
+        return rotate(new Vector3d(x, y, z));
+    }
+    /**
+     * Rotates the component by euler angles in radians around the X axis
+     */
+    public ModelComponent rotateX(final double rotation) {
+        return rotate(new Vector3d(rotation, 0, 0));
+    }
+    /**
+     * Rotates the component by euler angles in radians around the Y axis
+     */
+    public ModelComponent rotateY(final double rotation) {
+        return rotate(new Vector3d(0, rotation, 0));
+    }
+    /**
+     * Rotates the component by euler angles in radians around the Z axis
+     */
+    public ModelComponent rotateZ(final double rotation) {
+        return rotate(new Vector3d(0, 0, rotation));
+    }
+
+    /**
+     * Rotates the component by euler angles in radians
+     */
+    public ModelComponent rotate(@NotNull final Vector3f rotation) {
+        matrixBuilder.rotate(new Vector3d(rotation));
+        return this;
+    }
+    /**
+     * Rotates the component by euler angles in radians
+     */
+    public ModelComponent rotate(final float x, final float y, final float z) {
+        return rotate(new Vector3f(x, y, z));
+    }
+    /**
+     * Rotates the component by euler angles in radians around the X axis
+     */
+    public ModelComponent rotateX(final float rotation) {
+        return rotate(new Vector3f(rotation, 0, 0));
+    }
+    /**
+     * Rotates the component by euler angles in radians around the Y axis
+     */
+    public ModelComponent rotateY(final float rotation) {
+        return rotate(new Vector3f(0, rotation, 0));
+    }
+    /**
+     * Rotates the component by euler angles in radians around the Z axis
+     */
+    public ModelComponent rotateZ(final float rotation) {
+        return rotate(new Vector3f(0, 0, rotation));
+    }
+
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotate(@NotNull final Vector3d rotation) {
+        matrixBuilder.rotateBackwards(rotation);
+        return this;
+    }
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotate(final double x, final double y, final double z) {
+        return undoRotate(new Vector3d(x, y, z));
+    }
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotateX(final double rotation) {
+        return undoRotate(new Vector3d(rotation, 0, 0));
+    }
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotateY(final double rotation) {
+        return undoRotate(new Vector3d(0, rotation, 0));
+    }
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotateZ(final double rotation) {
+        return undoRotate(new Vector3d(0, 0, rotation));
+    }
+
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotate(final float x, final float y, final float z) {
+        return undoRotate(new Vector3d(x, y, z));
+    }
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotate(@NotNull final Vector3f rotation) {
+        matrixBuilder.rotateBackwards(new Vector3d(rotation));
+        return this;
+    }
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotateX(final float rotation) {
+        return undoRotate(new Vector3f(rotation, 0, 0));
+    }
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotateY(final float rotation) {
+        return undoRotate(new Vector3f(0, rotation, 0));
+    }
+    /**
+     * Undoes a previous rotation
+     * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
+     */
+    public ModelComponent undoRotateZ(final float rotation) {
+        return undoRotate(new Vector3f(0, 0, rotation));
     }
 
     public ModelCuboid material(@NotNull final Material material) {
@@ -118,12 +293,21 @@ public class ModelCuboid implements ModelComponent {
 
     @Override
     public Matrix4f getMatrix() {
-        return new TransformationMatrixBuilder()
-                .lookAlong(facing)
-                .translate(location)
-                .rotate(rotation)
-                .scale(new Vector3f(size))
-                .buildForBlockDisplay();
+        return matrixBuilder.buildForBlockDisplay();
+    }
+    @Override
+    public void updateMatrix(final @NotNull Display display) {
+        if (!(display instanceof final BlockDisplay blockDisplay)) {
+            throw new IllegalArgumentException("Must provide a BlockDisplay");
+        }
+        blockDisplay.setTransformationMatrix(getMatrix());
+    }
+    @Override
+    public void update(final @NotNull Display display) {
+        if (!(display instanceof final BlockDisplay blockDisplay)) {
+            throw new IllegalArgumentException("Must provide a BlockDisplay");
+        }
+        main.transformation(getMatrix()).update(blockDisplay);
     }
     @Override
     public BlockDisplay build(@NotNull final Location origin) {

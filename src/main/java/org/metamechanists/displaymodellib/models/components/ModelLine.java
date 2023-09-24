@@ -7,6 +7,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.BlockDisplay;
+import org.bukkit.entity.Display;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 import org.joml.Vector3f;
@@ -14,17 +15,30 @@ import org.metamechanists.displaymodellib.builders.BlockDisplayBuilder;
 import org.metamechanists.displaymodellib.transformations.TransformationMatrixBuilder;
 import org.metamechanists.displaymodellib.transformations.TransformationUtils;
 
-
-@SuppressWarnings("unused")
+/**
+ * Offers far less flexibility than ModelCuboid
+ */
+@SuppressWarnings({"unused", "WeakerAccess"})
 @Getter
 public class ModelLine implements ModelComponent {
-    private final BlockDisplayBuilder main = new BlockDisplayBuilder();
-
-    private Vector3f from = new Vector3f();
-    private Vector3f to = new Vector3f();
+    private final BlockDisplayBuilder main;
+    private Vector3f from;
+    private Vector3f to;
     private float thickness;
     private float extraLength;
     private double roll;
+
+    public ModelLine() {
+        this.main = new BlockDisplayBuilder();
+    }
+    public ModelLine(final @NotNull ModelLine other) {
+        this.main = other.main;
+        this.from = other.from;
+        this.to = other.to;
+        this.thickness = other.thickness;
+        this.extraLength = other.extraLength;
+        this.roll = other.roll;
+    }
 
     /**
      * @param from The start point of the line
@@ -104,6 +118,20 @@ public class ModelLine implements ModelComponent {
                 .rotate(0, 0, roll)
                 .scale(new Vector3f(thickness, thickness, from.distance(to) + extraLength))
                 .buildForBlockDisplay();
+    }
+    @Override
+    public void updateMatrix(final @NotNull Display display) {
+        if (!(display instanceof final BlockDisplay blockDisplay)) {
+            throw new IllegalArgumentException("Must provide a BlockDisplay");
+        }
+        blockDisplay.setTransformationMatrix(getMatrix());
+    }
+    @Override
+    public void update(final @NotNull Display display) {
+        if (!(display instanceof final BlockDisplay blockDisplay)) {
+            throw new IllegalArgumentException("Must provide a BlockDisplay");
+        }
+        main.transformation(getMatrix()).update(blockDisplay);
     }
     @Override
     public BlockDisplay build(@NotNull final Location origin) {

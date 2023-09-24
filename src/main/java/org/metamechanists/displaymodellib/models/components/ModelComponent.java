@@ -12,6 +12,8 @@ import org.joml.Matrix4f;
  */
 public interface ModelComponent {
     Matrix4f getMatrix();
+    void updateMatrix(@NotNull Display display);
+    void update(@NotNull Display display);
     Display build(@NotNull final Location origin);
     Display build(@NotNull final Block block);
 }

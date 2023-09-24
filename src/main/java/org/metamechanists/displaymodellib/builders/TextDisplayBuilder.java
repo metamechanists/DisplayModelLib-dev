@@ -3,6 +3,7 @@ package org.metamechanists.displaymodellib.builders;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Location;
+import org.bukkit.entity.Display;
 import org.bukkit.entity.Display.Billboard;
 import org.bukkit.entity.Display.Brightness;
 import org.bukkit.entity.TextDisplay;
@@ -26,37 +27,44 @@ public class TextDisplayBuilder implements DisplayBuilder {
     @Override
     public TextDisplay build(@NotNull final Location location) {
         return location.getWorld().spawn(location, TextDisplay.class, display -> {
-            if (textString != null) {
-                display.setText(textString);
-            }
-            if (textComponent != null) {
-                display.text(textComponent);
-            }
-            if (transformation != null) {
-                display.setTransformationMatrix(transformation);
-            }
-            if (brightness != null) {
-                display.setBrightness(new Brightness(brightness, 0));
-            }
-            if (glowColor != null) {
-                display.setGlowing(true);
-                display.setGlowColorOverride(glowColor);
-            }
-            if (viewRange != null) {
-                display.setViewRange(viewRange);
-            }
-            if (billboard != null) {
-                display.setBillboard(billboard);
-            }
-            if (alignment != null) {
-                display.setAlignment(alignment);
-            }
-            if (backgroundColor != null) {
-                display.setBackgroundColor(backgroundColor);
-            }
+            update(display);
             display.setDisplayWidth(0);
             display.setDisplayHeight(0);
         });
+    }
+    @Override
+    public void update(@NotNull final Display display) {
+        if (!(display instanceof final TextDisplay textDisplay)) {
+            throw new IllegalArgumentException("Must provide a TextDisplay");
+        }
+        if (textString != null) {
+            textDisplay.setText(textString);
+        }
+        if (textComponent != null) {
+            textDisplay.text(textComponent);
+        }
+        if (transformation != null) {
+            textDisplay.setTransformationMatrix(transformation);
+        }
+        if (brightness != null) {
+            textDisplay.setBrightness(new Brightness(brightness, 0));
+        }
+        if (glowColor != null) {
+            textDisplay.setGlowing(true);
+            textDisplay.setGlowColorOverride(glowColor);
+        }
+        if (viewRange != null) {
+            textDisplay.setViewRange(viewRange);
+        }
+        if (billboard != null) {
+            textDisplay.setBillboard(billboard);
+        }
+        if (alignment != null) {
+            textDisplay.setAlignment(alignment);
+        }
+        if (backgroundColor != null) {
+            textDisplay.setBackgroundColor(backgroundColor);
+        }
     }
 
     public TextDisplayBuilder text(final String textString) {

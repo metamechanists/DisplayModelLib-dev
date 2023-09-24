@@ -3,6 +3,7 @@ package org.metamechanists.displaymodellib.builders;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.entity.Display;
 import org.bukkit.entity.Display.Billboard;
 import org.bukkit.entity.Display.Brightness;
 import org.bukkit.entity.ItemDisplay;
@@ -23,31 +24,38 @@ public class ItemDisplayBuilder implements DisplayBuilder {
     @Override
     public ItemDisplay build(@NotNull final Location location) {
         return location.getWorld().spawn(location, ItemDisplay.class, display -> {
-            if (material != null) {
-                display.setItemStack(new ItemStack(material));
-            }
-            if (itemStack != null) {
-                display.setItemStack(itemStack);
-            }
-            if (transformation != null) {
-                display.setTransformationMatrix(transformation);
-            }
-            if (glowColor != null) {
-                display.setGlowing(true);
-                display.setGlowColorOverride(glowColor);
-            }
-            if (brightness != null) {
-                display.setBrightness(new Brightness(brightness, 0));
-            }
-            if (billboard != null) {
-                display.setBillboard(billboard);
-            }
-            if (viewRange != null) {
-                display.setViewRange(viewRange);
-            }
+            update(display);
             display.setDisplayWidth(0);
             display.setDisplayHeight(0);
         });
+    }
+    @Override
+    public void update(@NotNull final Display display) {
+        if (!(display instanceof final ItemDisplay itemDisplay)) {
+            throw new IllegalArgumentException("Must provide an ItemDisplay");
+        }
+        if (material != null) {
+            itemDisplay.setItemStack(new ItemStack(material));
+        }
+        if (itemStack != null) {
+            itemDisplay.setItemStack(itemStack);
+        }
+        if (transformation != null) {
+            itemDisplay.setTransformationMatrix(transformation);
+        }
+        if (glowColor != null) {
+            itemDisplay.setGlowing(true);
+            itemDisplay.setGlowColorOverride(glowColor);
+        }
+        if (brightness != null) {
+            itemDisplay.setBrightness(new Brightness(brightness, 0));
+        }
+        if (billboard != null) {
+            itemDisplay.setBillboard(billboard);
+        }
+        if (viewRange != null) {
+            itemDisplay.setViewRange(viewRange);
+        }
     }
 
     public ItemDisplayBuilder material(final Material material) {

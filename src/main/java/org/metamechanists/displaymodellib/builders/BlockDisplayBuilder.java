@@ -5,6 +5,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.data.BlockData;
 import org.bukkit.entity.BlockDisplay;
+import org.bukkit.entity.Display;
 import org.bukkit.entity.Display.Brightness;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
@@ -21,28 +22,35 @@ public class BlockDisplayBuilder implements DisplayBuilder {
     @Override
     public BlockDisplay build(@NotNull final Location location) {
         return location.getWorld().spawn(location, BlockDisplay.class, display -> {
-            if (material != null) {
-                display.setBlock(material.createBlockData());
-            }
-            if (blockData != null) {
-                display.setBlock(blockData);
-            }
-            if (transformation != null) {
-                display.setTransformationMatrix(transformation);
-            }
-            if (glowColor != null) {
-                display.setGlowing(true);
-                display.setGlowColorOverride(glowColor);
-            }
-            if (brightness != null) {
-                display.setBrightness(new Brightness(brightness, 0));
-            }
-            if (viewRange != null) {
-                display.setViewRange(viewRange);
-            }
+            update(display);
             display.setDisplayWidth(0);
             display.setDisplayHeight(0);
         });
+    }
+    @Override
+    public void update(@NotNull final Display display) {
+        if (!(display instanceof final BlockDisplay blockDisplay)) {
+            throw new IllegalArgumentException("Must provide a BlockDisplay");
+        }
+        if (material != null) {
+            blockDisplay.setBlock(material.createBlockData());
+        }
+        if (blockData != null) {
+            blockDisplay.setBlock(blockData);
+        }
+        if (transformation != null) {
+            blockDisplay.setTransformationMatrix(transformation);
+        }
+        if (glowColor != null) {
+            blockDisplay.setGlowing(true);
+            blockDisplay.setGlowColorOverride(glowColor);
+        }
+        if (brightness != null) {
+            blockDisplay.setBrightness(new Brightness(brightness, 0));
+        }
+        if (viewRange != null) {
+            blockDisplay.setViewRange(viewRange);
+        }
     }
 
     public BlockDisplayBuilder material(final Material material) {

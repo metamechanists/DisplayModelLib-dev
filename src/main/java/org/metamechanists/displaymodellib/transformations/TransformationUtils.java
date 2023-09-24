@@ -6,6 +6,7 @@ import org.bukkit.block.BlockFace;
 import org.bukkit.util.Transformation;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
+import org.joml.Vector3d;
 import org.joml.Vector3f;
 
 import java.util.ArrayList;
@@ -75,5 +76,8 @@ public class TransformationUtils {
                 .rotate(transformation.getLeftRotation())
                 .scale(transformation.getScale())
                 .rotate(transformation.getRightRotation());
+    }
+    public Vector3f dropPrecision(final @NotNull Vector3d vector) {
+        return new Vector3f((float) vector.x, (float) vector.y, (float) vector.z);
     }
 }

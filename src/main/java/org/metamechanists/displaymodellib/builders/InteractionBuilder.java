@@ -5,7 +5,7 @@ import org.bukkit.entity.Interaction;
 import org.jetbrains.annotations.NotNull;
 
 
-@SuppressWarnings("unused")
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class InteractionBuilder {
     private Float width;
     private Float height;
@@ -18,14 +18,15 @@ public class InteractionBuilder {
             finalLocation.subtract(0, height/2, 0);
         }
 
-        return location.getWorld().spawn(finalLocation, Interaction.class, interaction -> {
-            if (width != null) {
-                interaction.setInteractionWidth(width);
-            }
-            if (height != null) {
-                interaction.setInteractionHeight(height);
-            }
-        });
+        return location.getWorld().spawn(finalLocation, Interaction.class, this::update);
+    }
+    public void update(@NotNull final Interaction interaction) {
+        if (width != null) {
+            interaction.setInteractionWidth(width);
+        }
+        if (height != null) {
+            interaction.setInteractionHeight(height);
+        }
     }
 
     public InteractionBuilder width(final float width) {
