@@ -32,7 +32,10 @@ public class BlockDisplayBuilder implements DisplayBuilder {
 
     @Override
     public BlockDisplay build(@NotNull final Location location) {
-        return location.getWorld().spawn(location, BlockDisplay.class, display -> {
+        final Location finalLocation = location.clone();
+        finalLocation.setYaw(0);
+        finalLocation.setPitch(0);
+        return location.getWorld().spawn(finalLocation, BlockDisplay.class, display -> {
             update(display);
             display.setDisplayWidth(0);
             display.setDisplayHeight(0);

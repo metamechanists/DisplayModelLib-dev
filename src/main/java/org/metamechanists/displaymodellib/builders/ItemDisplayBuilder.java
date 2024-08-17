@@ -35,7 +35,11 @@ public class ItemDisplayBuilder implements DisplayBuilder {
 
     @Override
     public ItemDisplay build(@NotNull final Location location) {
-        return location.getWorld().spawn(location, ItemDisplay.class, display -> {
+        final Location finalLocation = location.clone();
+        finalLocation.setYaw(0);
+        finalLocation.setPitch(0);
+
+        return finalLocation.getWorld().spawn(finalLocation, ItemDisplay.class, display -> {
             update(display);
             display.setDisplayWidth(0);
             display.setDisplayHeight(0);

@@ -40,7 +40,11 @@ public class TextDisplayBuilder implements DisplayBuilder {
 
     @Override
     public TextDisplay build(@NotNull final Location location) {
-        return location.getWorld().spawn(location, TextDisplay.class, display -> {
+        final Location finalLocation = location.clone();
+        finalLocation.setYaw(0);
+        finalLocation.setPitch(0);
+
+        return finalLocation.getWorld().spawn(finalLocation, TextDisplay.class, display -> {
             update(display);
             display.setDisplayWidth(0);
             display.setDisplayHeight(0);

@@ -6,7 +6,7 @@
 
     <groupId>org.metamechanists</groupId>
     <artifactId>DisplayModelLib</artifactId>
-    <version>23</version>
+    <version>24</version>
     <packaging>jar</packaging>
 
     <name>DisplayModelLib</name>
