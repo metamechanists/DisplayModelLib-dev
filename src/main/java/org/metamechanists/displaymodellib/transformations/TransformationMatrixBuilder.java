@@ -100,7 +100,7 @@ public class TransformationMatrixBuilder {
      * Represents a backward rotation by a quaternion
      */
     public TransformationMatrixBuilder rotateBackwards(final @NotNull Quaterniond quaternion) {
-        components.addLast(new Rotation(quaternion));
+        components.addLast(new RotationBackwards(quaternion));
         return this;
     }
     /**
