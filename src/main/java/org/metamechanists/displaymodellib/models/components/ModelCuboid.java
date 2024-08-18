@@ -11,6 +11,8 @@ import org.bukkit.entity.BlockDisplay;
 import org.bukkit.entity.Display;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
+import org.joml.Quaterniond;
+import org.joml.Quaternionf;
 import org.joml.Vector3d;
 import org.joml.Vector3f;
 import org.metamechanists.displaymodellib.builders.BlockDisplayBuilder;
@@ -141,6 +143,13 @@ public class ModelCuboid implements ModelComponent {
         return this;
     }
     /**
+     * Rotates the component by a quaternion
+     */
+    public ModelCuboid rotate(@NotNull final Quaterniond rotation) {
+        matrixBuilder.rotate(rotation);
+        return this;
+    }
+    /**
      * Rotates the component by euler angles in radians
      */
     public ModelCuboid rotate(final double x, final double y, final double z) {
@@ -173,6 +182,13 @@ public class ModelCuboid implements ModelComponent {
         return this;
     }
     /**
+     * Rotates the component by a quaternion
+     */
+    public ModelCuboid rotate(@NotNull final Quaternionf quaternion) {
+        matrixBuilder.rotate(new Quaterniond(quaternion));
+        return this;
+    }
+    /**
      * Rotates the component by euler angles in radians
      */
     public ModelCuboid rotate(final float x, final float y, final float z) {
@@ -202,6 +218,13 @@ public class ModelCuboid implements ModelComponent {
      * You'd use this if, for example, you rotated and then translated, and now want the component back in its starting orientation
      */
     public ModelCuboid undoRotate(@NotNull final Vector3d rotation) {
+        matrixBuilder.rotateBackwards(rotation);
+        return this;
+    }
+    /**
+     * Undoes a previous rotation
+     */
+    public ModelCuboid undoRotate(@NotNull final Quaterniond rotation) {
         matrixBuilder.rotateBackwards(rotation);
         return this;
     }
@@ -247,6 +270,13 @@ public class ModelCuboid implements ModelComponent {
      */
     public ModelCuboid undoRotate(@NotNull final Vector3f rotation) {
         matrixBuilder.rotateBackwards(new Vector3d(rotation));
+        return this;
+    }
+    /**
+     * Undoes a previous rotation
+     */
+    public ModelCuboid undoRotate(@NotNull final Quaternionf rotation) {
+        matrixBuilder.rotateBackwards(new Quaterniond(rotation));
         return this;
     }
     /**

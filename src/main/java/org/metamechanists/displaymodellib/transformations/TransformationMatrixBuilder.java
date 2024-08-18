@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.block.BlockFace;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
+import org.joml.Quaterniond;
 import org.joml.Vector3d;
 import org.joml.Vector3f;
 import org.metamechanists.displaymodellib.transformations.components.LookAlong;
@@ -73,6 +74,13 @@ public class TransformationMatrixBuilder {
         return this;
     }
     /**
+     * Represents a rotation by a quaternion
+     */
+    public TransformationMatrixBuilder rotate(final @NotNull Quaterniond quaternion) {
+        components.addLast(new Rotation(quaternion));
+        return this;
+    }
+    /**
      * Represents a rotation in X, Y, and Z (angles in radians)
      */
     public TransformationMatrixBuilder rotate(final double x, final double y, final double z) {
@@ -86,6 +94,13 @@ public class TransformationMatrixBuilder {
      */
     public TransformationMatrixBuilder rotateBackwards(final @NotNull Vector3d rotation) {
         components.addLast(new RotationBackwards(rotation));
+        return this;
+    }
+    /**
+     * Represents a backward rotation by a quaternion
+     */
+    public TransformationMatrixBuilder rotateBackwards(final @NotNull Quaterniond quaternion) {
+        components.addLast(new Rotation(quaternion));
         return this;
     }
     /**
