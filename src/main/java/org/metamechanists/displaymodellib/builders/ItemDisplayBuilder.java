@@ -1,5 +1,6 @@
 package org.metamechanists.displaymodellib.builders;
 
+import lombok.Getter;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -11,6 +12,7 @@ import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 
+@Getter
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class ItemDisplayBuilder implements DisplayBuilder {
     private Material material;

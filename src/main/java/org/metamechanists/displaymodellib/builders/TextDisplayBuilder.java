@@ -1,5 +1,6 @@
 package org.metamechanists.displaymodellib.builders;
 
+import lombok.Getter;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Color;
 import org.bukkit.Location;
@@ -12,6 +13,7 @@ import org.jetbrains.annotations.NotNull;
 import org.joml.Matrix4f;
 
 
+@Getter
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class TextDisplayBuilder implements DisplayBuilder {
     private String textString;

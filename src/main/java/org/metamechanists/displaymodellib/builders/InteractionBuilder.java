@@ -1,10 +1,12 @@
 package org.metamechanists.displaymodellib.builders;
 
+import lombok.Getter;
 import org.bukkit.Location;
 import org.bukkit.entity.Interaction;
 import org.jetbrains.annotations.NotNull;
 
 
+@Getter
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class InteractionBuilder {
     private Float width;
