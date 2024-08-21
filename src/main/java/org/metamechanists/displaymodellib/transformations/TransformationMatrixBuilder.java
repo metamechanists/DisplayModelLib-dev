@@ -156,20 +156,21 @@ public class TransformationMatrixBuilder {
      * @return The matrix representing the transformation formed by all the components
      */
     public @NotNull Matrix4f buildForBlockDisplay() {
-        components.addLast(new Translation(BLOCK_DISPLAY_ADJUSTMENT));
-        return build();
+        TransformationMatrixBuilder builder =  new TransformationMatrixBuilder(this);
+        builder.components.addLast(new Translation(BLOCK_DISPLAY_ADJUSTMENT));
+        return builder.build();
     }
     /**
      * Adjusts the transformation so that the transformation acts on the center of the block display; by default the Y-axis is shifted
      * @return The matrix representing the transformation formed by all the components
      */
     public @NotNull Matrix4f buildForItemDisplay() {
-        return build();
+        return new TransformationMatrixBuilder(this).build();
     }
     /**
      * @return The matrix representing the transformation formed by all the components, plus an adjustment for the text display
      */
     public @NotNull Matrix4f buildForTextDisplay() {
-        return build();
+        return new TransformationMatrixBuilder(this).build();
     }
 }
