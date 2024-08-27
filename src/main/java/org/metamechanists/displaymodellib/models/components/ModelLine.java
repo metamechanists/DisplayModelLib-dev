@@ -108,6 +108,14 @@ public class ModelLine implements ModelComponent {
         main.glow(color);
         return this;
     }
+    public ModelLine interpolationDelay(@NotNull final Integer interpolationDelay) {
+        main.interpolationDelay(interpolationDelay);
+        return this;
+    }
+    public ModelLine interpolationDuration(@NotNull final Integer interpolationDuration) {
+        main.interpolationDuration(interpolationDuration);
+        return this;
+    }
 
     @Override
     public Matrix4f getMatrix() {

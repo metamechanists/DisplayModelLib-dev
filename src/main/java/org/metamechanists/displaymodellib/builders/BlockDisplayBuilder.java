@@ -20,6 +20,8 @@ public class BlockDisplayBuilder implements DisplayBuilder {
     private Color glowColor;
     private Integer brightness;
     private Float viewRange;
+    private Integer interpolationDelay;
+    private Integer interpolationDuration;
 
     public BlockDisplayBuilder() {}
 
@@ -30,6 +32,8 @@ public class BlockDisplayBuilder implements DisplayBuilder {
         this.glowColor = other.glowColor;
         this.brightness = other.brightness;
         this.viewRange = other.viewRange;
+        this.interpolationDelay = other.interpolationDelay;
+        this.interpolationDuration = other.interpolationDuration;
     }
 
     @Override
@@ -67,6 +71,12 @@ public class BlockDisplayBuilder implements DisplayBuilder {
         if (viewRange != null) {
             blockDisplay.setViewRange(viewRange);
         }
+        if (interpolationDelay != null) {
+            blockDisplay.setInterpolationDelay(interpolationDelay);
+        }
+        if (interpolationDuration != null) {
+            blockDisplay.setInterpolationDelay(interpolationDuration);
+        }
     }
 
     public BlockDisplayBuilder material(final Material material) {
@@ -92,6 +102,14 @@ public class BlockDisplayBuilder implements DisplayBuilder {
     }
     public BlockDisplayBuilder viewRange(final float viewRange) {
         this.viewRange = viewRange;
+        return this;
+    }
+    public BlockDisplayBuilder interpolationDelay(final int interpolationDelay) {
+        this.interpolationDelay = interpolationDelay;
+        return this;
+    }
+    public BlockDisplayBuilder interpolationDuration(final int interpolationDuration) {
+        this.interpolationDuration = interpolationDuration;
         return this;
     }
 }

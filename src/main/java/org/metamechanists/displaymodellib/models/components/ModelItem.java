@@ -330,6 +330,14 @@ public class ModelItem implements ModelComponent {
         main.viewRange(viewRange);
         return this;
     }
+    public ModelItem interpolationDelay(@NotNull final Integer interpolationDelay) {
+        main.interpolationDelay(interpolationDelay);
+        return this;
+    }
+    public ModelItem interpolationDuration(@NotNull final Integer interpolationDuration) {
+        main.interpolationDuration(interpolationDuration);
+        return this;
+    }
 
     @Override
     public Matrix4f getMatrix() {

@@ -320,6 +320,14 @@ public class ModelCuboid implements ModelComponent {
         main.glow(color);
         return this;
     }
+    public ModelCuboid interpolationDelay(@NotNull final Integer interpolationDelay) {
+        main.interpolationDelay(interpolationDelay);
+        return this;
+    }
+    public ModelCuboid interpolationDuration(@NotNull final Integer interpolationDuration) {
+        main.interpolationDuration(interpolationDuration);
+        return this;
+    }
 
     @Override
     public Matrix4f getMatrix() {

@@ -25,6 +25,8 @@ public class TextDisplayBuilder implements DisplayBuilder {
     private Billboard billboard;
     private TextAlignment alignment;
     private Color backgroundColor;
+    private Integer interpolationDelay;
+    private Integer interpolationDuration;
 
     public TextDisplayBuilder() {}
 
@@ -38,6 +40,8 @@ public class TextDisplayBuilder implements DisplayBuilder {
         this.billboard = other.billboard;
         this.alignment = other.alignment;
         this.backgroundColor = other.backgroundColor;
+        this.interpolationDelay = other.interpolationDelay;
+        this.interpolationDuration = other.interpolationDuration;
     }
 
     @Override
@@ -85,6 +89,12 @@ public class TextDisplayBuilder implements DisplayBuilder {
         if (backgroundColor != null) {
             textDisplay.setBackgroundColor(backgroundColor);
         }
+        if (interpolationDelay != null) {
+            textDisplay.setInterpolationDelay(interpolationDelay);
+        }
+        if (interpolationDuration != null) {
+            textDisplay.setInterpolationDelay(interpolationDuration);
+        }
     }
 
     public TextDisplayBuilder text(final String textString) {
@@ -121,6 +131,14 @@ public class TextDisplayBuilder implements DisplayBuilder {
     }
     public TextDisplayBuilder backgroundColor(final Color backgroundColor) {
         this.backgroundColor = backgroundColor;
+        return this;
+    }
+    public TextDisplayBuilder interpolationDelay(final int interpolationDelay) {
+        this.interpolationDelay = interpolationDelay;
+        return this;
+    }
+    public TextDisplayBuilder interpolationDuration(final int interpolationDuration) {
+        this.interpolationDuration = interpolationDuration;
         return this;
     }
 }

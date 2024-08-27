@@ -22,6 +22,8 @@ public class ItemDisplayBuilder implements DisplayBuilder {
     private Color glowColor;
     private Billboard billboard;
     private Float viewRange;
+    private Integer interpolationDelay;
+    private Integer interpolationDuration;
 
     public ItemDisplayBuilder() {}
 
@@ -33,6 +35,8 @@ public class ItemDisplayBuilder implements DisplayBuilder {
         this.glowColor = other.glowColor;
         this.billboard = other.billboard;
         this.viewRange = other.viewRange;
+        this.interpolationDelay = other.interpolationDelay;
+        this.interpolationDuration = other.interpolationDuration;
     }
 
     @Override
@@ -74,6 +78,12 @@ public class ItemDisplayBuilder implements DisplayBuilder {
         if (viewRange != null) {
             itemDisplay.setViewRange(viewRange);
         }
+        if (interpolationDelay != null) {
+            itemDisplay.setInterpolationDelay(interpolationDelay);
+        }
+        if (interpolationDuration != null) {
+            itemDisplay.setInterpolationDelay(interpolationDuration);
+        }
     }
 
     public ItemDisplayBuilder material(final Material material) {
@@ -103,6 +113,14 @@ public class ItemDisplayBuilder implements DisplayBuilder {
     }
     public ItemDisplayBuilder viewRange(final float viewRange) {
         this.viewRange = viewRange;
+        return this;
+    }
+    public ItemDisplayBuilder interpolationDelay(final int interpolationDelay) {
+        this.interpolationDelay = interpolationDelay;
+        return this;
+    }
+    public ItemDisplayBuilder interpolationDuration(final int interpolationDuration) {
+        this.interpolationDuration = interpolationDuration;
         return this;
     }
 }

@@ -132,6 +132,14 @@ public class ModelDiamond implements ModelComponent {
         main.glow(color);
         return this;
     }
+    public ModelDiamond interpolationDelay(@NotNull final Integer interpolationDelay) {
+        main.interpolationDelay(interpolationDelay);
+        return this;
+    }
+    public ModelDiamond interpolationDuration(@NotNull final Integer interpolationDuration) {
+        main.interpolationDuration(interpolationDuration);
+        return this;
+    }
 
     @Override
     public Matrix4f getMatrix() {

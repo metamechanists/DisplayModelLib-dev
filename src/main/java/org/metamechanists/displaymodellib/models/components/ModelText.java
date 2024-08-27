@@ -339,6 +339,14 @@ public class ModelText implements ModelComponent {
         main.billboard(billboard);
         return this;
     }
+    public ModelText interpolationDelay(@NotNull final Integer interpolationDelay) {
+        main.interpolationDelay(interpolationDelay);
+        return this;
+    }
+    public ModelText interpolationDuration(@NotNull final Integer interpolationDuration) {
+        main.interpolationDuration(interpolationDuration);
+        return this;
+    }
 
     @Override
     public Matrix4f getMatrix() {
