@@ -345,10 +345,10 @@ public class ModelItem implements ModelComponent {
         if (Utils.getMajorServerVersion() >= 20) {
             return new Matrix4f()
                     .rotateXYZ(new Vector3f((float) Math.PI, (float) Math.PI, (float) Math.PI))
-                    .mul(matrixBuilder.buildForBlockDisplay());
+                    .mul(matrixBuilder.buildForItemDisplay());
         }
 
-        return matrixBuilder.buildForBlockDisplay();
+        return matrixBuilder.buildForItemDisplay();
     }
     @Override
     public void updateMatrix(final @NotNull Display display) {
