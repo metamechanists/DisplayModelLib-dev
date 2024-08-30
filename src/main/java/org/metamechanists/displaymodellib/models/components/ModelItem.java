@@ -326,7 +326,7 @@ public class ModelItem implements ModelComponent {
         main.billboard(billboard);
         return this;
     }
-    public ModelItem viewRange(final int viewRange) {
+    public ModelItem viewRange(final float viewRange) {
         main.viewRange(viewRange);
         return this;
     }

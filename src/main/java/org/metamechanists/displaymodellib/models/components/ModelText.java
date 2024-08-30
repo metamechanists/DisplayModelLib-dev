@@ -339,7 +339,7 @@ public class ModelText implements ModelComponent {
         main.billboard(billboard);
         return this;
     }
-    public ModelText viewRange(final int viewRange) {
+    public ModelText viewRange(final float viewRange) {
         main.viewRange(viewRange);
         return this;
     }
