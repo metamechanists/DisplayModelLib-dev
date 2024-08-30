@@ -339,6 +339,10 @@ public class ModelText implements ModelComponent {
         main.billboard(billboard);
         return this;
     }
+    public ModelText viewRange(final int viewRange) {
+        main.viewRange(viewRange);
+        return this;
+    }
     public ModelText interpolationDelay(@NotNull final Integer interpolationDelay) {
         main.interpolationDelay(interpolationDelay);
         return this;
