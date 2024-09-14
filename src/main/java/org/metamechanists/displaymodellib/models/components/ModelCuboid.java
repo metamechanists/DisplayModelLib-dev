@@ -320,6 +320,10 @@ public class ModelCuboid implements ModelComponent {
         main.glow(color);
         return this;
     }
+    public ModelCuboid viewRange(final float viewRange) {
+        main.viewRange(viewRange);
+        return this;
+    }
     public ModelCuboid interpolationDelay(@NotNull final Integer interpolationDelay) {
         main.interpolationDelay(interpolationDelay);
         return this;

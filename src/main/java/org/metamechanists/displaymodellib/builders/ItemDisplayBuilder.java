@@ -15,7 +15,6 @@ import org.joml.Matrix4f;
 @Getter
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class ItemDisplayBuilder implements DisplayBuilder {
-    private Material material;
     private ItemStack itemStack;
     private Matrix4f transformation;
     private Integer brightness;
@@ -28,7 +27,6 @@ public class ItemDisplayBuilder implements DisplayBuilder {
     public ItemDisplayBuilder() {}
 
     public ItemDisplayBuilder(@NotNull final ItemDisplayBuilder other) {
-        this.material = other.material;
         this.itemStack = other.itemStack;
         this.transformation = other.transformation;
         this.brightness = other.brightness;
@@ -55,9 +53,6 @@ public class ItemDisplayBuilder implements DisplayBuilder {
     public void update(@NotNull final Display display) {
         if (!(display instanceof final ItemDisplay itemDisplay)) {
             throw new IllegalArgumentException("Must provide an ItemDisplay");
-        }
-        if (material != null) {
-            itemDisplay.setItemStack(new ItemStack(material));
         }
         if (itemStack != null) {
             itemDisplay.setItemStack(itemStack);
@@ -87,7 +82,7 @@ public class ItemDisplayBuilder implements DisplayBuilder {
     }
 
     public ItemDisplayBuilder material(final Material material) {
-        this.material = material;
+        this.itemStack = new ItemStack(material);
         return this;
     }
     public ItemDisplayBuilder itemStack(final ItemStack itemStack) {

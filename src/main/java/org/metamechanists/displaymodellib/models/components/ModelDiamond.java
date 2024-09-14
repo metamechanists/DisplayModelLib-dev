@@ -132,6 +132,10 @@ public class ModelDiamond implements ModelComponent {
         main.glow(color);
         return this;
     }
+    public ModelDiamond viewRange(final float viewRange) {
+        main.viewRange(viewRange);
+        return this;
+    }
     public ModelDiamond interpolationDelay(@NotNull final Integer interpolationDelay) {
         main.interpolationDelay(interpolationDelay);
         return this;

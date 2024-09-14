@@ -16,8 +16,7 @@ import org.joml.Matrix4f;
 @Getter
 @SuppressWarnings({"unused", "UnusedReturnValue"})
 public class TextDisplayBuilder implements DisplayBuilder {
-    private String textString;
-    private Component textComponent;
+    private Component text;
     private Matrix4f transformation;
     private Integer brightness;
     private Color glowColor;
@@ -31,8 +30,7 @@ public class TextDisplayBuilder implements DisplayBuilder {
     public TextDisplayBuilder() {}
 
     public TextDisplayBuilder(@NotNull final TextDisplayBuilder other) {
-        this.textString = other.textString;
-        this.textComponent = other.textComponent;
+        this.text = other.text;
         this.transformation = other.transformation;
         this.brightness = other.brightness;
         this.glowColor = other.glowColor;
@@ -61,11 +59,8 @@ public class TextDisplayBuilder implements DisplayBuilder {
         if (!(display instanceof final TextDisplay textDisplay)) {
             throw new IllegalArgumentException("Must provide a TextDisplay");
         }
-        if (textString != null) {
-            textDisplay.setText(textString);
-        }
-        if (textComponent != null) {
-            textDisplay.text(textComponent);
+        if (text != null) {
+            textDisplay.text(text);
         }
         if (transformation != null) {
             textDisplay.setTransformationMatrix(transformation);
@@ -97,12 +92,12 @@ public class TextDisplayBuilder implements DisplayBuilder {
         }
     }
 
-    public TextDisplayBuilder text(final String textString) {
-        this.textString = textString;
+    public TextDisplayBuilder text(final String text) {
+        this.text = Component.text(text);
         return this;
     }
-    public TextDisplayBuilder text(final Component textComponent) {
-        this.textComponent = textComponent;
+    public TextDisplayBuilder text(final Component text) {
+        this.text = text;
         return this;
     }
     public TextDisplayBuilder transformation(final Matrix4f transformation) {
