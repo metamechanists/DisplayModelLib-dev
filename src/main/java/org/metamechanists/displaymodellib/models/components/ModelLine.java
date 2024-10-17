@@ -22,6 +22,7 @@ import org.metamechanists.displaymodellib.transformations.TransformationUtils;
 @Getter
 public class ModelLine implements ModelComponent {
     private final BlockDisplayBuilder main;
+    private Vector3f translation;
     private Vector3f from;
     private Vector3f to;
     private float thickness;
@@ -40,6 +41,10 @@ public class ModelLine implements ModelComponent {
         this.roll = other.roll;
     }
 
+    public ModelLine translation(final Vector3f translation) {
+        this.translation = translation;
+        return this;
+    }
     /**
      * @param from The start point of the line
      */
@@ -119,7 +124,7 @@ public class ModelLine implements ModelComponent {
 
     @Override
     public Matrix4f getMatrix() {
-        final Vector3f midpoint = TransformationUtils.getMidpoint(from, to);
+        final Vector3f midpoint = TransformationUtils.getMidpoint(from, to).add(translation);
         return new TransformationMatrixBuilder()
                 .translate(midpoint)
                 .lookAlong(from, to)
